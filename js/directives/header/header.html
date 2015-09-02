@@ -1,0 +1,45 @@
+<link rel="stylesheet" href="js/directives/header/header.css" />
+
+<header ng-controller="headerController">
+
+<div class="header_container">
+
+	<table class = "header" >
+		  <tr>
+				<td class="icloe_CRM" >
+					<div>
+			     		<span id="nameApp" >Facturation</span>
+			   		</div>
+			   	</td>
+
+			    <td class="icloe_nom">
+			      	<span id = "mot3">Login</span>  <span id = "mot4">Role</span>
+
+					 <div id="lettre_i" ng-click="hideI()">
+							<a href=""  id="infobull" >
+							<img src="js/directives/header/header_img/i.png" alt="lettre_i" id="infoOrange"/>
+			 				<img src="js/directives/header/header_img/ICO_i_blue.png" alt="lettre_i" id="infoBleu" />
+
+					</div>
+
+
+				</td>
+
+				<td class="decalerInfoEtDeconnexion">
+				<div style="width: 200px">
+
+
+				</div>
+
+			    <td class="icloe_deconnexion">
+	                 <a ng-click="exit()" id ="hrefDeconexion" title="déconnexion" style="max-width:10px;">
+	                 <img src="js/directives/header/header_img/deconexion.png" alt="deconexion" id="deconexion" />
+	                 <img src="js/directives/header/header_img/ICO_cross_blue.png" alt="deconexion" id="deconexionBleu" />
+	                 </a>
+				</td>
+		  </tr>
+	</table>
+
+
+</div>
+</header>

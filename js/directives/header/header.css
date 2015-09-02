@@ -1,0 +1,222 @@
+header {
+    top: 0;
+    display: block;
+    height: 40px;
+    position: absolute;
+    width: 100%;
+    z-index: 99;
+    left: 0;
+    position: fixed;
+    background-color: white;
+    padding-top: 5px;
+}
+
+.header_container {
+    margin: auto;
+    width: 1200px;
+    height: 120%;
+    text-align: right;
+    padding: 0px;
+    background-image: url("header_img/bordHeader.png");
+    background-repeat: no-repeat;
+    background-position: 0% 121%;
+    background-size: 1200px;
+}
+
+header table {
+    border-collapse: initial;
+    width: 100%;
+}
+
+.header tr {
+    border-bottom: 1px solid rgb(218, 218, 218);
+}
+
+.header td {
+    height: 12px;
+}
+
+header .bordImage {
+    position: absolute;
+    left: -700px;
+    margin-left: 50%;
+    top: 50px;
+    width: 1400px;
+}
+
+.icloe_CRM {
+    border-right: 1px dotted #c0c0c0;
+    max-width: 230px;
+    padding-right: 5px;
+    white-space: nowrap;
+    width: 85px;
+}
+
+#nameApp {
+    font-size: 23px;
+    letter-spacing: 2px;
+    color: darkgrey;
+    transition: all 1s;
+}
+
+.icloe_nom {
+    padding-left: 10px;
+    text-align: left;
+    font-size: 1.2em;
+    max-height: 30px;
+    white-space: nowrap;
+}
+
+#lettre_i {
+    display: inline-block;
+}
+
+.statusPopupInfoCompte {
+    transform: scale(1) rotate(0) !important;
+    text-decoration: none !important;
+    background-color: #FFF !important;
+    width: 20px;
+}
+
+.decalerInfoEtDeconnexion {
+    width: 100;
+}
+
+#lettre_i img {
+    width: 20px;
+}
+
+.icloe_nom #mot3 {
+    font-weight: 600;
+    color: rgb(18, 50, 135);
+}
+
+.icloe_nom #mot4 {
+    color: rgb(131, 183, 223);
+    font-weight: 100;
+}
+
+.icloe_deconnexion {
+    width: 185px;
+    color: white;
+    padding-top: 5px;
+}
+
+.icloe_deconnexion img {
+    display: inline-block;
+    height: 20px;
+}
+
+
+/* Fenetre d'infos' */
+
+#showInfo {
+    position: absolute;
+    top: 10px;
+    left: 600px;
+    width: 300px;
+    height: 300px;
+    background: white;
+    z-index: 1;
+    border: 1px solid orange;
+}
+
+#infobull {
+    color: black;
+    height: 100px;
+}
+
+#infobull:hover,
+#infobull:focus {
+    text-decoration: none;
+}
+
+#infobull div {
+    position: absolute;
+    margin-top: 10px;
+    margin-left: -40px;
+    background: white;
+    border-radius: 3px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, .5);
+    transform: scale(0) rotate(-12deg);
+    transition: all .24s;
+    z-index: 3;
+    height: 250px;
+    width: 250px;
+    text-decoration: none;
+    font-size: 18px;
+    color: rgb(6, 67, 130);
+}
+
+#infobull div .ligneInfos {
+    display: block;
+    height: 25%;
+    border-bottom: 1px solid silver;
+    text-decoration: none;
+    background-color: white;
+}
+
+.titreInfos {
+    display: inline-block;
+    padding-left: 10px;
+    padding-top: 10px;
+    font-size: 0.8em;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.valeureInfos {
+    display: inline-block;
+    padding-left: 30px;
+    padding-top: 10px;
+    font-size: 0.8em;
+}
+
+.ligneInfos::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 40px;
+    width: 0;
+    height: 0;
+    border-bottom: 10px solid blue;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+}
+
+.bulle {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+
+/**
+ * Correction defect ID 4 : Consultation des données d un compte contractant
+ */
+
+#infoOrange {
+    display: none;
+}
+
+#infobull:hover #infoOrange {
+    display: inline-block;
+}
+
+#infobull:hover #infoBleu {
+    display: none;
+}
+
+#deconexionBleu {
+    display: none;
+}
+
+#hrefDeconexion {
+    cursor: pointer;
+}
+
+#hrefDeconexion:hover #deconexionBleu {
+    display: inline-block;
+}
+
+#hrefDeconexion:hover #deconexion {
+    display: none;
+}

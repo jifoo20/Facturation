@@ -1,0 +1,96 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="js/directives/rfc/rfc.css" />
+
+<div id="dispatchContainer" ng-controller="rfcController">
+    <div id="operationsBlock" class="panel panel-info">
+        <div class="panel-heading">Status : {{}}</div>
+        <div class="spaceButton">
+            <button type="button" class="btn btn-info">Add</button>
+            <button type="button" class="btn btn-default" ng-click="update()">Update</button>
+            <button type="button" class="btn btn-danger" ng-click="open()">Delete</button>
+            <button type="button" class="btn btn-success" ng-click="refresh()">Reload</button>
+            <button type="button" class="btn btn-warnning" ng-click="search()">Search From Database</button>
+         </div>
+
+
+
+
+        <table ng-table="tableParams" show-filter="true" class="table">
+
+            <!--Tableau de données (Partie Gauche,):  ------------------>
+            <tbody id="leftParts" ng-init="attributPosition = 0;" ng-init="columns">
+
+                <!--  **********************ligne d'entête (nom colonne)******************** -->
+
+                <tr style="background-color:white;border-top: 1px solid rgba(0, 0, 0, 0.12)">
+
+                    <th>Select</th>
+                    <!-- columns est determiné dans le controlleur (titres des colonnes) -->
+                    <th ng-repeat="column in columns" ng-show="column.visible" class="text-center sortable headTitle" ng-class="{'sort-asc': tableParams.isSortBy(column.field, 'asc'),
+		                    'sort-desc': tableParams.isSortBy(column.field, 'desc')}" ng-click="tableParams.sorting(column.field, tableParams.isSortBy(column.field, 'asc') ? 'desc' : 'asc')">
+
+                        <span> {{column.title}} </span>
+
+                        <div style="display: inline-block;">
+                            <i class="glyphicon glyphicon-instance"></i>
+                        </div>
+                    </th>
+                </tr>
+                <!-- ***********************ligne d'entête (filter) ************************ -->
+                <tr>
+                    <th></th>
+                    <th ng-repeat="column in columns" ng-show="column.visible" class="text-center sortable">
+                        <input ng-if="column.type=='text'" type="text" class="form-control" ng-model="filter_dict[column.field]" />
+                        <select ng-if="column.type=='select'" type="text" class="form-control" ng-model="filter_dict[column.field]" ng-options="elem for elem in list[column.field]"></select>
+                        <input ng-if="column.type=='checkbox'" type="checkbox" class="form-control" ng-model="filter_dict[column.field]" ng-disabled="ActivEditMass" />
+                </tr>
+
+                <!-- **************************** Ligne d'edition en masse  *********************** -->
+                <tr >
+                    <th>
+                        <div></div>
+
+                    </th>
+                    <th ng-repeat="column in columns" newField="newField + 1;" ng-show="column.visible">
+                        <form ng-submit="massEdit(column.field, newField); newField =''">
+                            <input ng-if="massEditable && column.type=='input'" type="text" ng-model="newFieldA[column.field]" />
+                            <select ng-if="massEditable && column.type=='select'" type="text" ng-init="newFieldA[column.field] = ''" ng-model="newFieldA[column.field]"></select>
+                            <input ng-if="massEditable && column.type=='checkbox'" type="checkbox" ng-model="newFieldA[column.field]" />
+                        </form>
+                    </th>
+                </tr>
+
+
+
+                <!-- Les données  -->
+                <tr ng-repeat="instance in $data" ng-init="AttributPosition= AttributPosition + 1;">
+
+                    <td>
+                        <input id="inputFlagEdit" class="form-control" type="checkbox" ng-model="instance.checked"/>
+                    </td>
+
+                    <td ng-repeat="column in columns" ng-show="column.visible" sortable="column.field" tooltip="{{instance[column.field]}}" tooltip-append-to-body="true">
+
+
+
+                        <div ng-if="column.field!='ind_multi_dom_rfc'" tooltip="{{instance[column.field]}}" ng-model="instance[column.field]" ng-hide="column.editable && instance.checked"><a>{{instance[column.field]}}</a>
+                        </div>
+                          <div ng-if="column.field=='ind_multi_dom_rfc'" tooltip="{{instance[column.field]}}" ng-model="instance[column.field]" ng-hide="column.editable && instance.checked"><input type="checkbox" ng-model="instance[column.field]" ng-disabled="true"/>
+                        </div>
+
+                        <form ng-if="column.editable && instance.checked" class="formInputStyleDispatch" ng-show="column.field != 'idf_rfc'">
+
+                            <input ng-if="(column.editable && (column.type == 'text'))" id="inputFlagEdit" class="form-control" type="text" ng-model="instance[column.field]"/>
+                            <input ng-if="(column.editable && (column.type == 'checkbox'))" id="inputFlagEdit" class="form-control" type="checkbox" ng-model="instance[column.field]" />
+                            <select ng-if="(column.editable && (column.type == 'select')) && column.type=='select'" class="form-control" ng-options="elem for elem in list[column.field]" ng-model="instance[column.field]">
+                            </select>
+                        </form>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
